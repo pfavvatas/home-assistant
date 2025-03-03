@@ -1,0 +1,107 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            String    @id @default(uuid())
+  email         String    @unique
+  password      String
+  firstName     String?
+  lastName      String?
+  homes         UserHome[]
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+}
+
+model Home {
+  id          String      @id @default(uuid())
+  name        String
+  address     String
+  members     UserHome[]
+  documents   Document[]
+  bills       Bill[]
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+  electricity ElectricityRecord[]
+  sharedBills SharedElectricityHomeUsage[]
+}
+
+model UserHome {
+  id        String    @id @default(uuid())
+  user      User      @relation(fields: [userId], references: [id])
+  userId    String
+  home      Home      @relation(fields: [homeId], references: [id])
+  homeId    String
+  role      String    // OWNER, MEMBER
+  createdAt DateTime  @default(now())
+
+  @@unique([userId, homeId])
+}
+
+model Document {
+  id          String    @id @default(uuid())
+  title       String
+  content     String?
+  fileUrl     String?
+  fileType    String    // PDF, DOC, etc.
+  home        Home      @relation(fields: [homeId], references: [id])
+  homeId      String
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+}
+
+model Bill {
+  id          String    @id @default(uuid())
+  type        String    // ELECTRICITY, INTERNET, etc.
+  amount      Float
+  dueDate     DateTime
+  isPaid      Boolean   @default(false)
+  home        Home      @relation(fields: [homeId], references: [id])
+  homeId      String
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  reminderSet Boolean   @default(false)
+}
+
+model ElectricityRecord {
+  id          String   @id @default(uuid())
+  homeId      String
+  startDate   DateTime
+  endDate     DateTime
+  kwhUsed     Float
+  cost        Float
+  notes       String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  home        Home     @relation(fields: [homeId], references: [id])
+}
+
+model SharedElectricityBill {
+  id          String   @id @default(uuid())
+  buildingName String  // Name or identifier for the building
+  startDate   DateTime
+  endDate     DateTime
+  totalKwh    Float
+  totalCost   Float
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  homes       SharedElectricityHomeUsage[]
+}
+
+model SharedElectricityHomeUsage {
+  id          String   @id @default(uuid())
+  billId      String
+  homeId      String
+  kwhUsed     Float
+  cost        Float    // Calculated cost based on usage
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  bill        SharedElectricityBill @relation(fields: [billId], references: [id])
+  home        Home                  @relation(fields: [homeId], references: [id])
+  @@unique([billId, homeId]) // Each home can only appear once in a shared bill
+} 

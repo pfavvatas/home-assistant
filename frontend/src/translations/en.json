@@ -1,0 +1,88 @@
+{
+  "common": {
+    "appName": "Home Assistant",
+    "loading": "Loading...",
+    "save": "Save",
+    "cancel": "Cancel",
+    "add": "Add",
+    "edit": "Edit",
+    "delete": "Delete",
+    "language": "Language"
+  },
+  "navigation": {
+    "dashboard": "Dashboard",
+    "documentation": "Documentation",
+    "logout": "Logout",
+    "login": "Login",
+    "register": "Register"
+  },
+  "auth": {
+    "email": "Email",
+    "password": "Password",
+    "firstName": "First Name",
+    "lastName": "Last Name",
+    "loginButton": "Login",
+    "registerButton": "Register",
+    "noAccount": "Don't have an account?",
+    "haveAccount": "Already have an account?"
+  },
+  "dashboard": {
+    "welcome": "Welcome",
+    "addHome": "Add Home",
+    "noHomes": "You haven't added any homes yet"
+  },
+  "home": {
+    "details": "Home Details",
+    "name": "Name",
+    "address": "Address",
+    "electricityRecords": "Electricity Records",
+    "sharedBills": "Shared Bills"
+  },
+  "electricity": {
+    "addRecord": "Add Record",
+    "startDate": "Start Date",
+    "endDate": "End Date",
+    "kwhUsed": "kWh Used",
+    "cost": "Cost",
+    "notes": "Notes",
+    "period": "Period",
+    "usage": "Usage",
+    "totalUsage": "Total Usage",
+    "totalCost": "Total Cost",
+    "yourUsage": "Your Usage",
+    "yourShare": "Your Share"
+  },
+  "bills": {
+    "addBill": "Add Bill",
+    "type": "Type",
+    "amount": "Amount",
+    "dueDate": "Due Date",
+    "isPaid": "Is Paid",
+    "markAsPaid": "Mark as Paid"
+  },
+  "documents": {
+    "addDocument": "Add Document",
+    "title": "Title",
+    "content": "Content",
+    "fileType": "File Type"
+  },
+  "wiki": {
+    "title": "Documentation",
+    "welcome": "Welcome to the Home Assistant documentation. Here you'll find everything you need to know about using the application.",
+    "languageSection": {
+      "title": "Language Settings",
+      "description": "You can change the application language at any time:",
+      "steps": [
+        "Click the Language button in the navigation bar (with translate icon)",
+        "Select your preferred language from the menu",
+        "The interface will update immediately",
+        "Your choice will be remembered for future visits"
+      ],
+      "availableLanguages": "Currently available languages:",
+      "languages": {
+        "en": "English",
+        "el": "Greek (Ελληνικά)"
+      }
+    }
+  }
+} 
