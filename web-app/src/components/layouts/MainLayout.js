@@ -24,6 +24,7 @@ import {
   Settings as SettingsIcon,
   AccountCircle,
   ExitToApp as LogoutIcon,
+  Help as HelpIcon,
 } from '@mui/icons-material';
 import { useAuth } from '../../contexts/AuthContext';
 
@@ -99,6 +100,13 @@ export default function MainLayout() {
         
         <Divider />
         
+        <ListItem button onClick={() => navigate('/wiki')}>
+          <ListItemIcon>
+            <HelpIcon />
+          </ListItemIcon>
+          <ListItemText primary="Documentation" />
+        </ListItem>
+
         <ListItem button onClick={() => navigate('/settings')}>
           <ListItemIcon>
             <SettingsIcon />
@@ -180,7 +188,7 @@ export default function MainLayout() {
           open={mobileOpen}
           onClose={handleDrawerToggle}
           ModalProps={{
-            keepMounted: true, // Better open performance on mobile.
+            keepMounted: true,
           }}
           sx={{
             display: { xs: 'block', sm: 'none' },

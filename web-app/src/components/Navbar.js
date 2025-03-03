@@ -12,6 +12,7 @@ import {
   Home as HomeIcon,
   Settings as SettingsIcon,
   Logout as LogoutIcon,
+  Help as HelpIcon,
 } from '@mui/icons-material';
 import { useAuth } from '../contexts/AuthContext';
 
@@ -45,6 +46,15 @@ export default function Navbar() {
         </Typography>
 
         <Box>
+          <IconButton
+            color="inherit"
+            onClick={() => navigate('/wiki')}
+            sx={{ mr: 1 }}
+            aria-label="documentation"
+          >
+            <HelpIcon />
+          </IconButton>
+
           <IconButton
             color="inherit"
             onClick={() => navigate('/settings')}

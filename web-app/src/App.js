@@ -12,6 +12,7 @@ import Home from './pages/Home';
 import Bills from './pages/Bills';
 import Documents from './pages/Documents';
 import Settings from './pages/Settings';
+import Wiki from './pages/Wiki';
 
 // Layout
 import MainLayout from './components/layouts/MainLayout';
@@ -53,6 +54,7 @@ function App() {
               <Route path="home/:homeId/bills" element={<Bills />} />
               <Route path="home/:homeId/documents" element={<Documents />} />
               <Route path="settings" element={<Settings />} />
+              <Route path="wiki" element={<Wiki />} />
             </Route>
           </Routes>
         </Container>
